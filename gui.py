@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-
-################################################################################
-## Form generated from reading UI file 'gui.ui'
-##
-## Created by: Qt User Interface Compiler version 6.4.2
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
 import numpy
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
                             QMetaObject, QObject, QPoint, QRect, QSize, Qt,
@@ -93,7 +84,7 @@ class Ui_MainWindow(object):
         self.NumberLabel.setText(str(number))
 
     def start(self):
-        self.thread_handler.start()
+        self.thread_handler.startAll()
 
     def stop(self, thread: int):
         self.thread_handler.stop(thread)

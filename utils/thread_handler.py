@@ -7,9 +7,12 @@ class ThreadHandler:
     def __init__(self, threads: list) -> None:
         self.threads = threads
 
-    def start(self):
+    def startAll(self):
         for thread in self.threads:
             thread.start()
+
+    def start(self, thread):
+        self.threads[thread].start()
 
     def connect(self, threadSignal: Signal, func: FunctionType):
         threadSignal.connect(func)
