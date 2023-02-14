@@ -9,9 +9,9 @@ class Camera(QThread):
         self._active = True
         cap = cv2.VideoCapture(0)
         while self._active:
-            ret, frame = cap.read()
+            ret, image = cap.read()
             if ret:
-                self.frame.emit(cv2.flip(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB), 1))
+                self.frame.emit(cv2.flip(cv2.cvtColor(image, cv2.COLOR_BGR2RGB), 1))
             else:
                 cap = cv2.VideoCapture(0)
                 continue
