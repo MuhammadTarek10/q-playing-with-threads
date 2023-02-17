@@ -11,7 +11,7 @@ class ThreadHandler:
         for thread in self.threads:
             thread.start()
 
-    def start(self, thread):
+    def start(self, thread: int):
         self.threads[thread].start()
 
     def connect(self, threadSignal: Signal, func: FunctionType):
@@ -21,5 +21,5 @@ class ThreadHandler:
         for thread in self.threads:
             thread.stop()
 
-    def stop(self, thread):
+    def stop(self, thread: int):
         self.threads[thread].stop()

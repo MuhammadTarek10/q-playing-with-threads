@@ -49,11 +49,11 @@ class Window1App(QMainWindow, Window1):
 class Window2App(QMainWindow, Window2):
     def __init__(self):
         super().__init__()
-        self.setupUi(self)
         self.camera = Camera()
         self.threadHandler = ThreadHandler([self.camera])
         self.cameraRunning = False;
         self.threadHandler.connect(self.camera.frame, self.updateFrame)
+        self.setupUi(self)
         self.ToggleCameraButton.clicked.connect(lambda: self.toggle())
         self.Window1Button.clicked.connect(lambda: self.moveToWindow1())
         self.show()
@@ -62,9 +62,11 @@ class Window2App(QMainWindow, Window2):
         if self.cameraRunning:
             self.threadHandler.stopAll()
             self.cameraRunning = False
+            self.ToggleCameraButton.setText("Start Camera")
         else:
             self.threadHandler.startAll()
             self.cameraRunning = True
+            self.ToggleCameraButton.setText("Stop Camera")
 
     def updateFrame(self, frame: numpy.ndarray):
         frame = QImage(frame, frame.shape[1], frame.shape[0], frame.strides[0], QImage.Format_RGB888)

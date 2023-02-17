@@ -11,13 +11,13 @@ class Number(QThread):
         super().__init__(parent)
 
     def run(self):
-        while True:
+        self._active = True
+        while self._active:
             randomValue = randint(0, 100)
             self.value.emit(str(randomValue))
             sleep(1)
-            if self.isInterruptionRequested():
-                break
+            
     
     def stop(self):
-        self.requestInterruption()
+        self._active = False
         self.wait()

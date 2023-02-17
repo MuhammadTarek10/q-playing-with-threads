@@ -12,17 +12,16 @@ class Camera(QThread):
     def run(self):
         self._active = True
         cap = cv2.VideoCapture(0)
-        while True:
+        while self._active:
             ret, image = cap.read()
             if ret:
                 self.frame.emit(cv2.flip(cv2.cvtColor(image, cv2.COLOR_BGR2RGB), 1))
             else:
                 cap = cv2.VideoCapture(0)
                 continue
-            if self.isInterruptionRequested():
-                break
+            
         cap.release()
 
     def stop(self):
-        self.requestInterruption()
+        self._active = False
         self.wait()
